@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PopupApp_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PopupApp_Own">
+          <Key>
+            <PropertyRef Name="PopupApp_Own_id" />
+          </Key>
+          <Property Name="PopupApp_Own_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopupApp_Treaty_id" Type="int" />
+        </EntityType>
+        <EntityType Name="PopupApp_Treaty">
+          <Key>
+            <PropertyRef Name="PopupApp_Treaty_id" />
+          </Key>
+          <Property Name="PopupApp_Treaty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopupApp_Treaty_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="PopupApp_Treaty_Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_Start_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_End_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_Coming" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_Counterparty" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_File_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_File" Type="varbinary(max)" />
+          <Property Name="PopupApp_Treaty_Cost" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Treaty_Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="Хранилище PopupApp_dbModelContainer">
+          <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PopupApp_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PopupApp_Own">
+          <Key>
+            <PropertyRef Name="PopupApp_Own_id" />
+          </Key>
+          <Property Name="PopupApp_Own_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopupApp_Treaty_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PopupApp_Treaty">
+          <Key>
+            <PropertyRef Name="PopupApp_Treaty_id" />
+          </Key>
+          <Property Name="PopupApp_Treaty_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopupApp_Treaty_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_Start_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_End_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_Coming" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_Counterparty" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_File_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_File" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PopupApp_Treaty_Cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Treaty_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PopupApp_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" />
+          <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PopupApp_dbModelContainer" CdmEntityContainer="PopupApp_dbEntities">
+          <EntitySetMapping Name="PopupApp_Own">
+            <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Own">
+              <MappingFragment StoreEntitySet="PopupApp_Own">
+                <ScalarProperty Name="PopupApp_Own_id" ColumnName="PopupApp_Own_id" />
+                <ScalarProperty Name="PopupApp_Treaty_id" ColumnName="PopupApp_Treaty_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopupApp_Treaty">
+            <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Treaty">
+              <MappingFragment StoreEntitySet="PopupApp_Treaty">
+                <ScalarProperty Name="PopupApp_Treaty_id" ColumnName="PopupApp_Treaty_id" />
+                <ScalarProperty Name="PopupApp_Treaty_Name" ColumnName="PopupApp_Treaty_Name" />
+                <ScalarProperty Name="PopupApp_Treaty_Location" ColumnName="PopupApp_Treaty_Location" />
+                <ScalarProperty Name="PopupApp_Treaty_Start_Date" ColumnName="PopupApp_Treaty_Start_Date" />
+                <ScalarProperty Name="PopupApp_Treaty_End_Date" ColumnName="PopupApp_Treaty_End_Date" />
+                <ScalarProperty Name="PopupApp_Treaty_Coming" ColumnName="PopupApp_Treaty_Coming" />
+                <ScalarProperty Name="PopupApp_Treaty_Counterparty" ColumnName="PopupApp_Treaty_Counterparty" />
+                <ScalarProperty Name="PopupApp_Treaty_File_Name" ColumnName="PopupApp_Treaty_File_Name" />
+                <ScalarProperty Name="PopupApp_Treaty_File" ColumnName="PopupApp_Treaty_File" />
+                <ScalarProperty Name="PopupApp_Treaty_Cost" ColumnName="PopupApp_Treaty_Cost" />
+                <ScalarProperty Name="PopupApp_Treaty_Status" ColumnName="PopupApp_Treaty_Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

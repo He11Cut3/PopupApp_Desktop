@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PopupApp_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PopupApp_Own">
+    <Key>
+      <PropertyRef Name="PopupApp_Own_id" />
+    </Key>
+    <Property Name="PopupApp_Own_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopupApp_Treaty_id" Type="int" />
+  </EntityType>
+  <EntityType Name="PopupApp_Treaty">
+    <Key>
+      <PropertyRef Name="PopupApp_Treaty_id" />
+    </Key>
+    <Property Name="PopupApp_Treaty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopupApp_Treaty_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="PopupApp_Treaty_Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_Start_Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_End_Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_Coming" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_Counterparty" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_File_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_File" Type="varbinary(max)" />
+    <Property Name="PopupApp_Treaty_Cost" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_Status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="Хранилище PopupApp_dbModelContainer">
+    <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
