@@ -14,16 +14,27 @@ namespace PopupApp
     
     public partial class PopupApp_Treaty
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PopupApp_Treaty()
+        {
+            this.PopupApp_Own = new HashSet<PopupApp_Own>();
+        }
+    
         public int PopupApp_Treaty_id { get; set; }
         public string PopupApp_Treaty_Name { get; set; }
+        public string PopupApp_Treaty_Number_Treaty { get; set; }
         public string PopupApp_Treaty_Location { get; set; }
         public string PopupApp_Treaty_Start_Date { get; set; }
         public string PopupApp_Treaty_End_Date { get; set; }
         public string PopupApp_Treaty_Coming { get; set; }
+        public string PopupApp_Treaty_Services { get; set; }
         public string PopupApp_Treaty_Counterparty { get; set; }
         public string PopupApp_Treaty_File_Name { get; set; }
         public byte[] PopupApp_Treaty_File { get; set; }
         public string PopupApp_Treaty_Cost { get; set; }
         public string PopupApp_Treaty_Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PopupApp_Own> PopupApp_Own { get; set; }
     }
 }

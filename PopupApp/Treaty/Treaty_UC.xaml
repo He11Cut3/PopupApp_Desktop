@@ -94,6 +94,9 @@
                                             <TextBlock Text="{Binding PopupApp_Treaty_Name,
                                                        StringFormat='Наименование: {0}'}"
                                                        Style="{StaticResource textuser}"/>
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Number_Treaty,
+                                                       StringFormat='Номер договора: {0}'}"
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Location,
                                                        StringFormat='Город: {0}'}"
                                                        Style="{StaticResource textuser}"/>
@@ -106,6 +109,9 @@
                                             <TextBlock Text="{Binding PopupApp_Treaty_Coming,
                                                        StringFormat='Договор: {0}'}"
                                                        Style="{StaticResource textuser}"/>
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Services,
+                                                       StringFormat='Услуга: {0}'}"
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Counterparty,
                                                        StringFormat='Контр-агент: {0}'}"
                                                        Style="{StaticResource textuser}" />

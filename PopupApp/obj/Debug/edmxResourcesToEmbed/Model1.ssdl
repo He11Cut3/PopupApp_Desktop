@@ -13,18 +13,87 @@
     </Key>
     <Property Name="PopupApp_Treaty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PopupApp_Treaty_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="PopupApp_Treaty_Number_Treaty" Type="nvarchar" MaxLength="150" />
     <Property Name="PopupApp_Treaty_Location" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_Start_Date" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_End_Date" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_Coming" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Treaty_Services" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_Counterparty" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_File_Name" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_File" Type="varbinary(max)" />
     <Property Name="PopupApp_Treaty_Cost" Type="nvarchar" MaxLength="50" />
     <Property Name="PopupApp_Treaty_Status" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="PopupApp_User">
+    <Key>
+      <PropertyRef Name="PopupApp_User_id" />
+    </Key>
+    <Property Name="PopupApp_User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopupApp_User_Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_User_Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_PopupApp_Own_PopupApp_Treaty">
+    <End Role="PopupApp_Treaty" Type="Self.PopupApp_Treaty" Multiplicity="0..1" />
+    <End Role="PopupApp_Own" Type="Self.PopupApp_Own" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PopupApp_Treaty">
+        <PropertyRef Name="PopupApp_Treaty_id" />
+      </Principal>
+      <Dependent Role="PopupApp_Own">
+        <PropertyRef Name="PopupApp_Treaty_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Хранилище PopupApp_dbModelContainer">
     <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PopupApp_User" EntityType="Self.PopupApp_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PopupApp_Own_PopupApp_Treaty" Association="Self.FK_PopupApp_Own_PopupApp_Treaty">
+      <End Role="PopupApp_Treaty" EntitySet="PopupApp_Treaty" />
+      <End Role="PopupApp_Own" EntitySet="PopupApp_Own" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -51,7 +51,7 @@ namespace PopupApp.Treaty
         {
             string searchText = Find_Inf.Text;
             var query = from emp in popupApp_DbEntities.PopupApp_Treaty
-                        where emp.PopupApp_Treaty_Name.Contains(searchText) || emp.PopupApp_Treaty_Coming.Contains(searchText) || emp.PopupApp_Treaty_Cost.Contains(searchText) || emp.PopupApp_Treaty_Counterparty.Contains(searchText) || emp.PopupApp_Treaty_End_Date.Contains(searchText) || emp.PopupApp_Treaty_Location.Contains(searchText)              
+                        where emp.PopupApp_Treaty_Name.Contains(searchText) || emp.PopupApp_Treaty_Coming.Contains(searchText) || emp.PopupApp_Treaty_Cost.Contains(searchText) || emp.PopupApp_Treaty_Counterparty.Contains(searchText) || emp.PopupApp_Treaty_End_Date.Contains(searchText) || emp.PopupApp_Treaty_Location.Contains(searchText) || emp.PopupApp_Treaty_Services.Contains(searchText) || emp.PopupApp_Treaty_Number_Treaty.Contains(searchText)
                         select emp;
 
             listView.ItemsSource = query.ToList();

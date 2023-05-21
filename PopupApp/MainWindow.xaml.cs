@@ -53,7 +53,7 @@ namespace PopupApp
             List<PopupApp_Treaty> data = popupApp_DbEntities.PopupApp_Treaty.ToList();
 
             // Определяем наименования столбцов
-            string[] columnNames = new string[] { "Наименование", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Контрагент", "Стоимость", "Статус" };
+            string[] columnNames = new string[] { "Наименование", "Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Контрагент", "Услуга", "Стоимость", "Статус" };
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             // Создаем новый файл Excel
             using (ExcelPackage package = new ExcelPackage())
@@ -71,13 +71,15 @@ namespace PopupApp
                 for (int i = 0; i < data.Count; i++)
                 {
                     worksheet.Cells[i + 2, 1].Value = data[i].PopupApp_Treaty_Name;
-                    worksheet.Cells[i + 2, 2].Value = data[i].PopupApp_Treaty_Location;
-                    worksheet.Cells[i + 2, 3].Value = data[i].PopupApp_Treaty_Start_Date;
-                    worksheet.Cells[i + 2, 4].Value = data[i].PopupApp_Treaty_End_Date;
-                    worksheet.Cells[i + 2, 5].Value = data[i].PopupApp_Treaty_Coming;
-                    worksheet.Cells[i + 2, 6].Value = data[i].PopupApp_Treaty_Counterparty;
-                    worksheet.Cells[i + 2, 7].Value = data[i].PopupApp_Treaty_Cost;
-                    worksheet.Cells[i + 2, 8].Value = data[i].PopupApp_Treaty_Status;
+                    worksheet.Cells[i + 2, 2].Value = data[i].PopupApp_Treaty_Number_Treaty;
+                    worksheet.Cells[i + 2, 3].Value = data[i].PopupApp_Treaty_Location;
+                    worksheet.Cells[i + 2, 4].Value = data[i].PopupApp_Treaty_Start_Date;
+                    worksheet.Cells[i + 2, 5].Value = data[i].PopupApp_Treaty_End_Date;
+                    worksheet.Cells[i + 2, 6].Value = data[i].PopupApp_Treaty_Coming;
+                    worksheet.Cells[i + 2, 7].Value = data[i].PopupApp_Treaty_Counterparty;
+                    worksheet.Cells[i + 2, 8].Value = data[i].PopupApp_Treaty_Services;
+                    worksheet.Cells[i + 2, 9].Value = data[i].PopupApp_Treaty_Cost;
+                    worksheet.Cells[i + 2, 10].Value = data[i].PopupApp_Treaty_Status;
                 }
 
                 // Сохраняем файл
@@ -106,7 +108,7 @@ namespace PopupApp
                     var counterpartyTreaties = popupApp_DbEntities.PopupApp_Treaty.Where(d => d.PopupApp_Treaty_Counterparty == counterpartyName).ToList();
 
                     // Записываем наименования столбцов
-                    string[] columnNames = new string[] { "Наименование", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Стоимость", "Статус" };
+                    string[] columnNames = new string[] { "Наименование","Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Услуга", "Стоимость", "Статус" };
                     for (int i = 0; i < columnNames.Length; i++)
                     {
                         worksheet.Cells[1, i + 1].Value = columnNames[i];
@@ -116,12 +118,14 @@ namespace PopupApp
                     for (int i = 0; i < counterpartyTreaties.Count; i++)
                     {
                         worksheet.Cells[i + 2, 1].Value = counterpartyTreaties[i].PopupApp_Treaty_Name;
-                        worksheet.Cells[i + 2, 2].Value = counterpartyTreaties[i].PopupApp_Treaty_Location;
-                        worksheet.Cells[i + 2, 3].Value = counterpartyTreaties[i].PopupApp_Treaty_Start_Date;
-                        worksheet.Cells[i + 2, 4].Value = counterpartyTreaties[i].PopupApp_Treaty_End_Date;
-                        worksheet.Cells[i + 2, 5].Value = counterpartyTreaties[i].PopupApp_Treaty_Coming;
-                        worksheet.Cells[i + 2, 6].Value = counterpartyTreaties[i].PopupApp_Treaty_Cost;
-                        worksheet.Cells[i + 2, 7].Value = counterpartyTreaties[i].PopupApp_Treaty_Status;
+                        worksheet.Cells[i + 2, 2].Value = counterpartyTreaties[i].PopupApp_Treaty_Number_Treaty;
+                        worksheet.Cells[i + 2, 3].Value = counterpartyTreaties[i].PopupApp_Treaty_Location;
+                        worksheet.Cells[i + 2, 4].Value = counterpartyTreaties[i].PopupApp_Treaty_Start_Date;
+                        worksheet.Cells[i + 2, 5].Value = counterpartyTreaties[i].PopupApp_Treaty_End_Date;
+                        worksheet.Cells[i + 2, 6].Value = counterpartyTreaties[i].PopupApp_Treaty_Coming;
+                        worksheet.Cells[i + 2, 7].Value = counterpartyTreaties[i].PopupApp_Treaty_Services;
+                        worksheet.Cells[i + 2, 8].Value = counterpartyTreaties[i].PopupApp_Treaty_Cost;
+                        worksheet.Cells[i + 2, 9].Value = counterpartyTreaties[i].PopupApp_Treaty_Status;
                     }
                 }
 
@@ -139,7 +143,7 @@ namespace PopupApp
             List<PopupApp_Treaty> data = popupApp_DbEntities.PopupApp_Treaty.ToList();
 
             // Определяем наименования столбцов
-            string[] columnNames = new string[] { "Наименование", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Контрагент", "Стоимость", "Статус" };
+            string[] columnNames = new string[] { "Наименование", "Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Контрагент", "Услуга", "Стоимость", "Статус" };
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
             // Создаем новый файл Excel
@@ -171,13 +175,15 @@ namespace PopupApp
                     foreach (var treaty in quarter)
                     {
                         worksheet.Cells[rowIndex, 1].Value = treaty.PopupApp_Treaty_Name;
-                        worksheet.Cells[rowIndex, 2].Value = treaty.PopupApp_Treaty_Location;
-                        worksheet.Cells[rowIndex, 3].Value = treaty.PopupApp_Treaty_Start_Date;
-                        worksheet.Cells[rowIndex, 4].Value = treaty.PopupApp_Treaty_End_Date;
-                        worksheet.Cells[rowIndex, 5].Value = treaty.PopupApp_Treaty_Coming;
-                        worksheet.Cells[rowIndex, 6].Value = treaty.PopupApp_Treaty_Counterparty;
-                        worksheet.Cells[rowIndex, 7].Value = treaty.PopupApp_Treaty_Cost;
-                        worksheet.Cells[rowIndex, 8].Value = treaty.PopupApp_Treaty_Status;
+                        worksheet.Cells[rowIndex, 2].Value = treaty.PopupApp_Treaty_Number_Treaty;
+                        worksheet.Cells[rowIndex, 3].Value = treaty.PopupApp_Treaty_Location;
+                        worksheet.Cells[rowIndex, 4].Value = treaty.PopupApp_Treaty_Start_Date;
+                        worksheet.Cells[rowIndex, 5].Value = treaty.PopupApp_Treaty_End_Date;
+                        worksheet.Cells[rowIndex, 6].Value = treaty.PopupApp_Treaty_Coming;
+                        worksheet.Cells[rowIndex, 7].Value = treaty.PopupApp_Treaty_Counterparty;
+                        worksheet.Cells[rowIndex, 8].Value = treaty.PopupApp_Treaty_Services;
+                        worksheet.Cells[rowIndex, 9].Value = treaty.PopupApp_Treaty_Cost;
+                        worksheet.Cells[rowIndex, 10].Value = treaty.PopupApp_Treaty_Status;
                         rowIndex++;
                     }
                 }
@@ -253,7 +259,7 @@ namespace PopupApp
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add(worksheetName);
 
                         // Записываем наименования столбцов
-                        string[] columnNames = new string[] { "Наименование", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Стоимость", "Статус" };
+                        string[] columnNames = new string[] { "Наименование","Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Услуга", "Стоимость", "Статус" };
                         for (int i = 0; i < columnNames.Length; i++)
                         {
                             worksheet.Cells[1, i + 1].Value = columnNames[i];
@@ -263,12 +269,14 @@ namespace PopupApp
                         for (int i = 0; i < treaties.Count; i++)
                         {
                             worksheet.Cells[i + 2, 1].Value = treaties[i].PopupApp_Treaty_Name;
-                            worksheet.Cells[i + 2, 2].Value = treaties[i].PopupApp_Treaty_Location;
-                            worksheet.Cells[i + 2, 3].Value = treaties[i].PopupApp_Treaty_Start_Date;
-                            worksheet.Cells[i + 2, 4].Value = treaties[i].PopupApp_Treaty_End_Date;
-                            worksheet.Cells[i + 2, 5].Value = treaties[i].PopupApp_Treaty_Coming;
-                            worksheet.Cells[i + 2, 6].Value = treaties[i].PopupApp_Treaty_Cost;
-                            worksheet.Cells[i + 2, 7].Value = treaties[i].PopupApp_Treaty_Status;
+                            worksheet.Cells[i + 2, 2].Value = treaties[i].PopupApp_Treaty_Number_Treaty;
+                            worksheet.Cells[i + 2, 3].Value = treaties[i].PopupApp_Treaty_Location;
+                            worksheet.Cells[i + 2, 4].Value = treaties[i].PopupApp_Treaty_Start_Date;
+                            worksheet.Cells[i + 2, 5].Value = treaties[i].PopupApp_Treaty_End_Date;
+                            worksheet.Cells[i + 2, 6].Value = treaties[i].PopupApp_Treaty_Coming;
+                            worksheet.Cells[i + 2, 7].Value = treaties[i].PopupApp_Treaty_Services;
+                            worksheet.Cells[i + 2, 8].Value = treaties[i].PopupApp_Treaty_Cost;
+                            worksheet.Cells[i + 2, 9].Value = treaties[i].PopupApp_Treaty_Status;
                         }
                     }
                 }

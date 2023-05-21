@@ -42,6 +42,8 @@ namespace PopupApp.Treaty
                 {
                     PopupApp_Treaty_Name = Name.Text,
                     PopupApp_Treaty_Location = Location.Text,
+                    PopupApp_Treaty_Number_Treaty = Number.Text,
+                    PopupApp_Treaty_Services = Service.Text,
                     PopupApp_Treaty_Start_Date = Date_Start.SelectedDate?.ToString("dd.MM.yyyy"),
                     PopupApp_Treaty_End_Date = Date_End.SelectedDate?.ToString("dd.MM.yyyy"),
                     PopupApp_Treaty_Coming = (myComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString(),
