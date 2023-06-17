@@ -16,7 +16,5 @@ namespace PopupApp
     {
         public int PopupApp_Own_id { get; set; }
         public Nullable<int> PopupApp_Treaty_id { get; set; }
-    
-        public virtual PopupApp_Treaty PopupApp_Treaty { get; set; }
     }
 }

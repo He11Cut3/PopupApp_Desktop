@@ -102,16 +102,7 @@
                      FontFamily="Montserrat"
                      FontWeight="Medium"
                      FontSize="16" />
-            <TextBox x:Name="Location"
-                     BorderBrush="White"
-                     Foreground="White"
-                     Width="200"
-                     Height="28"
-                     Margin="45 25 5 0"
-                     HorizontalAlignment="Left"
-                     FontFamily="Montserrat"
-                     FontWeight="Medium"
-                     FontSize="16" />
+            
             <DatePicker x:Name="Date_Start"
                         BorderBrush="White"
                         Foreground="White"
@@ -147,8 +138,45 @@
                 </DatePicker.CalendarStyle>
             </DatePicker>
             <ComboBox Width="200"
-                      BorderBrush="White"
-                      Foreground="White"
+                      Foreground="#00abf4"
+                      BorderBrush="#00abf4"
+                      Background="#0b1b25"
+                      Height="35"
+                      Margin="45 25 5 0"
+                      HorizontalAlignment="Left"
+                      FontFamily="Montserrat"
+                      FontWeight="Medium"
+                      FontSize="16"
+                      x:Name="Contr"
+                      SelectionChanged="Contr_SelectionChanged">
+            </ComboBox>
+            <TextBox x:Name="Location"
+                     IsEnabled="False"
+                     BorderBrush="White"
+                     Foreground="White"
+                     Width="200"
+                     Height="28"
+                     Margin="45 25 5 0"
+                     HorizontalAlignment="Left"
+                     FontFamily="Montserrat"
+                     FontWeight="Medium"
+                     FontSize="16" />
+            
+            <TextBox x:Name="Service"
+                     BorderBrush="White"
+                     IsEnabled="False"
+                     Foreground="White"
+                     Width="200"
+                     Height="28"
+                     Margin="45 25 5 10"
+                     HorizontalAlignment="Left"
+                     FontFamily="Montserrat"
+                     FontWeight="Medium"
+                     FontSize="16" />
+            <ComboBox Width="200"
+                      Foreground="#00abf4"
+                      BorderBrush="#00abf4"
+                      Background="#0b1b25"
                       Height="35"
                       Margin="45 25 5 0"
                       HorizontalAlignment="Left"
@@ -156,29 +184,9 @@
                       FontWeight="Medium"
                       FontSize="16"
                       x:Name="myComboBox">
-                <ComboBoxItem Background="#0b1b25">Входящий</ComboBoxItem>
-                <ComboBoxItem Background="#0b1b25">Исходящий</ComboBoxItem>
+                <ComboBoxItem>Входящий</ComboBoxItem>
+                <ComboBoxItem>Исходящий</ComboBoxItem>
             </ComboBox>
-            <TextBox x:Name="Service"
-                     BorderBrush="White"
-                     Foreground="White"
-                     Width="200"
-                     Height="28"
-                     Margin="45 25 5 10"
-                     HorizontalAlignment="Left"
-                     FontFamily="Montserrat"
-                     FontWeight="Medium"
-                     FontSize="16" />
-            <TextBox x:Name="Contr"
-                     BorderBrush="White"
-                     Foreground="White"
-                     Width="200"
-                     Height="28"
-                     Margin="45 25 5 10"
-                     HorizontalAlignment="Left"
-                     FontFamily="Montserrat"
-                     FontWeight="Medium"
-                     FontSize="16" />
             <TextBox x:Name="Cost"
                      BorderBrush="White"
                      Foreground="White"
@@ -190,8 +198,8 @@
                      FontWeight="Medium"
                      FontSize="16" />
             <ComboBox Width="200"
-                      BorderBrush="White"
-                      Foreground="White"
+                      Foreground="#00abf4"
+                      BorderBrush="#00abf4"
                       Background="#0b1b25"
                       Height="35"
                       Margin="45 25 5 0"
@@ -200,8 +208,8 @@
                       FontWeight="Medium"
                       FontSize="16"
                       x:Name="myComboBox1">
-                <ComboBoxItem Background="#0b1b25">Открыт</ComboBoxItem>
-                <ComboBoxItem Background="#0b1b25">Закрыт</ComboBoxItem>
+                <ComboBoxItem>Открыт</ComboBoxItem>
+                <ComboBoxItem>Закрыт</ComboBoxItem>
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="1"
@@ -212,19 +220,14 @@
                        Foreground="White"
                        Height="22"
                        Margin="30,35,0,0"
-                       Width="138" />
+                       Width="146" />
             <TextBlock Text="Номер договора"
                        Style="{StaticResource textuser}"
                        Foreground="White"
                        Height="22"
                        Margin="30,35,0,0"
-                       Width="138" />
-            <TextBlock Text="Город"
-                       Style="{StaticResource textuser}"
-                       Foreground="White"
-                       Height="22"
-                       Margin="30,35,0,0"
-                       Width="138" />
+                       Width="146" />
+            
             <TextBlock Text="Дата - начала договора"
                        TextWrapping="Wrap"
                        Style="{StaticResource textuser}"
@@ -238,11 +241,16 @@
                        Height="22"
                        Margin="30,35,0,0"
                        Width="223" />
-            <TextBlock Text="Договор"
-                       TextWrapping="Wrap"
+            <TextBlock Text="Контр-агент"
                        Style="{StaticResource textuser}"
                        Foreground="White"
-                       Height="24"
+                       Height="22"
+                       Margin="30,35,0,0"
+                       Width="146" />
+            <TextBlock Text="Город"
+                       Style="{StaticResource textuser}"
+                       Foreground="White"
+                       Height="22"
                        Margin="30,35,0,0"
                        Width="146" />
             <TextBlock Text="Услуга"
@@ -252,24 +260,27 @@
                        Height="24"
                        Margin="30,35,0,0"
                        Width="146" />
-            <TextBlock Text="Контр-агент"
+            <TextBlock Text="Договор"
+                       TextWrapping="Wrap"
                        Style="{StaticResource textuser}"
                        Foreground="White"
-                       Height="22"
+                       Height="24"
                        Margin="30,35,0,0"
-                       Width="138" />
+                       Width="146" />
+            
+            
             <TextBlock Text="Стоимость"
                        Style="{StaticResource textuser}"
                        Foreground="White"
                        Height="22"
                        Margin="30,35,0,0"
-                       Width="138" />
+                       Width="146" />
             <TextBlock Text="Статус"
                        Style="{StaticResource textuser}"
                        Foreground="White"
                        Height="22"
                        Margin="30,35,0,0"
-                       Width="138" />
+                       Width="146" />
         </StackPanel>
         <Button x:Name="New_Traty"
                 Grid.Column="1"

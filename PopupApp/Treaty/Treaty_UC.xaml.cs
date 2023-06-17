@@ -28,16 +28,26 @@ namespace PopupApp.Treaty
         PopupApp_dbEntities popupApp_DbEntities = new PopupApp_dbEntities();
         List<PopupApp_Treaty> popupApp_Treaties = new List<PopupApp_Treaty>();
 
+
+        List<PopupApp_Treaty> incomingTreaties = new List<PopupApp_Treaty>();
+        List<PopupApp_Treaty> outgoingTreaties = new List<PopupApp_Treaty>();
+
         public Treaty_UC()
         {
             InitializeComponent();
-            listView.ItemsSource = popupApp_DbEntities.PopupApp_Treaty.OrderBy(A => A.PopupApp_Treaty_id).ToList();
+            Pop_Up();
         }
 
         public void Pop_Up()
         {
-            popupApp_Treaties = popupApp_DbEntities.PopupApp_Treaty.ToList();
-            listView.ItemsSource = popupApp_Treaties;
+            incomingTreaties = popupApp_DbEntities.PopupApp_Treaty.Where(t => t.PopupApp_Treaty_Coming == "Входящий").ToList();
+            outgoingTreaties = popupApp_DbEntities.PopupApp_Treaty.Where(t => t.PopupApp_Treaty_Coming == "Исходящий").ToList();
+
+            // Отображение информации о входящих договорах в первом ListView
+            listView_input.ItemsSource = incomingTreaties.OrderBy(t => t.PopupApp_Treaty_id).ToList();
+
+            // Отображение информации об исходящих договорах во втором ListView
+            listView_OutPut.ItemsSource = outgoingTreaties.OrderBy(t => t.PopupApp_Treaty_id).ToList();
         }
 
 
@@ -54,7 +64,8 @@ namespace PopupApp.Treaty
                         where emp.PopupApp_Treaty_Name.Contains(searchText) || emp.PopupApp_Treaty_Coming.Contains(searchText) || emp.PopupApp_Treaty_Cost.Contains(searchText) || emp.PopupApp_Treaty_Counterparty.Contains(searchText) || emp.PopupApp_Treaty_End_Date.Contains(searchText) || emp.PopupApp_Treaty_Location.Contains(searchText) || emp.PopupApp_Treaty_Services.Contains(searchText) || emp.PopupApp_Treaty_Number_Treaty.Contains(searchText)
                         select emp;
 
-            listView.ItemsSource = query.ToList();
+            listView_input.ItemsSource = query.ToList();
+            listView_OutPut.ItemsSource = query.ToList();
         }
 
         private void Edit_Treaty_Click(object sender, RoutedEventArgs e)

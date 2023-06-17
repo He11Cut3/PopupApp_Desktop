@@ -37,3 +37,10 @@ PopupApp_Treaty_File varbinary(max),
 PopupApp_Treaty_Cost nvarchar(50),
 PopupApp_Treaty_Status nvarchar(50),
 )
+create table PopupApp_Counterparty
+(
+PopupApp_Counterparty_id int primary key identity(1,1),
+PopupApp_Counterparty_FIO nvarchar(50),
+PopupApp_Counterparty_Services nvarchar(50),
+PopupApp_Counterparty_Location nvarchar(50),
+)

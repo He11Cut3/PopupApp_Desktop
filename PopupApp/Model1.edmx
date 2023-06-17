@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище PopupApp_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PopupApp_Counterparty">
+          <Key>
+            <PropertyRef Name="PopupApp_Counterparty_id" />
+          </Key>
+          <Property Name="PopupApp_Counterparty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PopupApp_Counterparty_FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Counterparty_Services" Type="nvarchar" MaxLength="50" />
+          <Property Name="PopupApp_Counterparty_Location" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="PopupApp_Own">
           <Key>
             <PropertyRef Name="PopupApp_Own_id" />
@@ -48,18 +57,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_PopupApp_Own_PopupApp_Treaty">
-          <End Role="PopupApp_Treaty" Type="Self.PopupApp_Treaty" Multiplicity="0..1" />
-          <End Role="PopupApp_Own" Type="Self.PopupApp_Own" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PopupApp_Treaty">
-              <PropertyRef Name="PopupApp_Treaty_id" />
-            </Principal>
-            <Dependent Role="PopupApp_Own">
-              <PropertyRef Name="PopupApp_Treaty_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -92,27 +89,32 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище PopupApp_dbModelContainer">
+          <EntitySet Name="PopupApp_Counterparty" EntityType="Self.PopupApp_Counterparty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PopupApp_User" EntityType="Self.PopupApp_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_PopupApp_Own_PopupApp_Treaty" Association="Self.FK_PopupApp_Own_PopupApp_Treaty">
-            <End Role="PopupApp_Treaty" EntitySet="PopupApp_Treaty" />
-            <End Role="PopupApp_Own" EntitySet="PopupApp_Own" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PopupApp_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PopupApp_Counterparty">
+          <Key>
+            <PropertyRef Name="PopupApp_Counterparty_id" />
+          </Key>
+          <Property Name="PopupApp_Counterparty_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PopupApp_Counterparty_FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Counterparty_Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PopupApp_Counterparty_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="PopupApp_Own">
           <Key>
             <PropertyRef Name="PopupApp_Own_id" />
           </Key>
           <Property Name="PopupApp_Own_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PopupApp_Treaty_id" Type="Int32" />
-          <NavigationProperty Name="PopupApp_Treaty" Relationship="Self.FK_PopupApp_Own_PopupApp_Treaty" FromRole="PopupApp_Own" ToRole="PopupApp_Treaty" />
         </EntityType>
         <EntityType Name="PopupApp_Treaty">
           <Key>
@@ -131,7 +133,6 @@
           <Property Name="PopupApp_Treaty_File" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PopupApp_Treaty_Cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PopupApp_Treaty_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PopupApp_Own" Relationship="Self.FK_PopupApp_Own_PopupApp_Treaty" FromRole="PopupApp_Treaty" ToRole="PopupApp_Own" />
         </EntityType>
         <EntityType Name="PopupApp_User">
           <Key>
@@ -151,27 +152,12 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_PopupApp_Own_PopupApp_Treaty">
-          <End Role="PopupApp_Treaty" Type="Self.PopupApp_Treaty" Multiplicity="0..1" />
-          <End Role="PopupApp_Own" Type="Self.PopupApp_Own" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PopupApp_Treaty">
-              <PropertyRef Name="PopupApp_Treaty_id" />
-            </Principal>
-            <Dependent Role="PopupApp_Own">
-              <PropertyRef Name="PopupApp_Treaty_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PopupApp_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PopupApp_Counterparty" EntityType="Self.PopupApp_Counterparty" />
           <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" />
           <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" />
           <EntitySet Name="PopupApp_User" EntityType="Self.PopupApp_User" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_PopupApp_Own_PopupApp_Treaty" Association="Self.FK_PopupApp_Own_PopupApp_Treaty">
-            <End Role="PopupApp_Treaty" EntitySet="PopupApp_Treaty" />
-            <End Role="PopupApp_Own" EntitySet="PopupApp_Own" />
-          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -220,6 +206,16 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище PopupApp_dbModelContainer" CdmEntityContainer="PopupApp_dbEntities">
+          <EntitySetMapping Name="PopupApp_Counterparty">
+            <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Counterparty">
+              <MappingFragment StoreEntitySet="PopupApp_Counterparty">
+                <ScalarProperty Name="PopupApp_Counterparty_id" ColumnName="PopupApp_Counterparty_id" />
+                <ScalarProperty Name="PopupApp_Counterparty_FIO" ColumnName="PopupApp_Counterparty_FIO" />
+                <ScalarProperty Name="PopupApp_Counterparty_Services" ColumnName="PopupApp_Counterparty_Services" />
+                <ScalarProperty Name="PopupApp_Counterparty_Location" ColumnName="PopupApp_Counterparty_Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PopupApp_Own">
             <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Own">
               <MappingFragment StoreEntitySet="PopupApp_Own">

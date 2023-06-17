@@ -18,6 +18,7 @@ using PopupApp.Report;
 using OfficeOpenXml;
 using System.IO;
 using System.Globalization;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace PopupApp
 {
@@ -41,11 +42,20 @@ namespace PopupApp
         private void Treaty_Click(object sender, RoutedEventArgs e)
         {
             Treaty_Grid.Children.Clear();
+            Contr_Grid.Children.Clear();
 
             Treaty_UC treaty_UC = new Treaty_UC();
-
             Treaty_Grid.Children.Add(treaty_UC);
+        }
 
+
+        private void Contr_Click(object sender, RoutedEventArgs e)
+        {
+            Treaty_Grid.Children.Clear();
+            Contr_Grid.Children.Clear();
+
+            Contr_UC contr_UC = new Contr_UC();
+            Contr_Grid.Children.Add(contr_UC);
         }
 
         private void Main_Click(object sender, RoutedEventArgs e)
@@ -283,6 +293,80 @@ namespace PopupApp
                 File.WriteAllBytes("Локация.xlsx", package.GetAsByteArray());
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 string filePath = System.IO.Path.Combine(desktopPath, "Локация.xlsx");
+                File.WriteAllBytes(filePath, package.GetAsByteArray());
+            }
+        }
+
+        private void Status_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            // Создаем новый файл Excel
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                // Фильтруем открытые договоры
+                var openTreaties = popupApp_DbEntities.PopupApp_Treaty.Where(d => d.PopupApp_Treaty_Status == "Открыт").ToList();
+
+                if (openTreaties.Any())
+                {
+                    // Добавляем лист для открытых договоров
+                    ExcelWorksheet openWorksheet = package.Workbook.Worksheets.Add("Открытые договоры");
+
+                    // Записываем наименования столбцов
+                    string[] columnNames = new string[] { "Наименование", "Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Услуга", "Стоимость", "Статус" };
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        openWorksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+
+                    // Записываем данные
+                    for (int i = 0; i < openTreaties.Count; i++)
+                    {
+                        openWorksheet.Cells[i + 2, 1].Value = openTreaties[i].PopupApp_Treaty_Name;
+                        openWorksheet.Cells[i + 2, 2].Value = openTreaties[i].PopupApp_Treaty_Number_Treaty;
+                        openWorksheet.Cells[i + 2, 3].Value = openTreaties[i].PopupApp_Treaty_Location;
+                        openWorksheet.Cells[i + 2, 4].Value = openTreaties[i].PopupApp_Treaty_Start_Date;
+                        openWorksheet.Cells[i + 2, 5].Value = openTreaties[i].PopupApp_Treaty_End_Date;
+                        openWorksheet.Cells[i + 2, 6].Value = openTreaties[i].PopupApp_Treaty_Coming;
+                        openWorksheet.Cells[i + 2, 7].Value = openTreaties[i].PopupApp_Treaty_Services;
+                        openWorksheet.Cells[i + 2, 8].Value = openTreaties[i].PopupApp_Treaty_Cost;
+                        openWorksheet.Cells[i + 2, 9].Value = openTreaties[i].PopupApp_Treaty_Status;
+                    }
+                }
+
+                // Фильтруем закрытые договоры
+                var closedTreaties = popupApp_DbEntities.PopupApp_Treaty.Where(d => d.PopupApp_Treaty_Status == "Закрыт").ToList();
+
+                if (closedTreaties.Any())
+                {
+                    // Добавляем лист для закрытых договоров
+                    ExcelWorksheet closedWorksheet = package.Workbook.Worksheets.Add("Закрытые договоры");
+
+                    // Записываем наименования столбцов
+                    string[] columnNames = new string[] { "Наименование", "Номер договора", "Местоположение", "Дата начала договора", "Дата окончания договора", "Договор", "Услуга", "Стоимость", "Статус" };
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        closedWorksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+
+                    // Записываем данные
+                    for (int i = 0; i < closedTreaties.Count; i++)
+                    {
+                        closedWorksheet.Cells[i + 2, 1].Value = closedTreaties[i].PopupApp_Treaty_Name;
+                        closedWorksheet.Cells[i + 2, 2].Value = closedTreaties[i].PopupApp_Treaty_Number_Treaty;
+                        closedWorksheet.Cells[i + 2, 3].Value = closedTreaties[i].PopupApp_Treaty_Location;
+                        closedWorksheet.Cells[i + 2, 4].Value = closedTreaties[i].PopupApp_Treaty_Start_Date;
+                        closedWorksheet.Cells[i + 2, 5].Value = closedTreaties[i].PopupApp_Treaty_End_Date;
+                        closedWorksheet.Cells[i + 2, 6].Value = closedTreaties[i].PopupApp_Treaty_Coming;
+                        closedWorksheet.Cells[i + 2, 7].Value = closedTreaties[i].PopupApp_Treaty_Services;
+                        closedWorksheet.Cells[i + 2, 8].Value = closedTreaties[i].PopupApp_Treaty_Cost;
+                        closedWorksheet.Cells[i + 2, 9].Value = closedTreaties[i].PopupApp_Treaty_Status;
+                    }
+                }
+
+                File.WriteAllBytes("Договоры.xlsx", package.GetAsByteArray());
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string filePath = System.IO.Path.Combine(desktopPath, "Договоры.xlsx");
                 File.WriteAllBytes(filePath, package.GetAsByteArray());
             }
         }

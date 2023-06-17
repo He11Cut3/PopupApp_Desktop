@@ -411,6 +411,26 @@
                     
 
                 </Button>
+                <Button x:Name="Contr"
+                        Height="70"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="Contr_Click"
+                        Margin="0,10,10,10"
+                        Style="{DynamicResource HomeBtnStyle}">
+                    <StackPanel>
+                        <fa:IconImage Icon="ArrowsDownToPeople"
+                                      Width="35"
+                                      Foreground="White" />
+                        <TextBlock Text="Контрагент"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Foreground="White" />
+                    </StackPanel>
+                    <!--add image-->
+
+
+                </Button>
                 <Menu Grid.Row="0"
                       Grid.Column="1"
                       Width="120">
@@ -448,6 +468,10 @@
                                   x:Name="Location"
                                   Margin="0 8 0 0"
                                   Click="Location_Click" />
+                        <MenuItem Header="По статусу"
+                                  x:Name="Status"
+                                  Margin="0 8 0 0"
+                                  Click="Status_Click" />
                     </MenuItem>
                 </Menu>
             </StackPanel>
@@ -499,6 +523,8 @@
             </Popup>
 
             <Grid x:Name="Treaty_Grid"
+                  Margin="105,42,10,85" />
+            <Grid x:Name="Contr_Grid"
                   Margin="105,42,10,85" />
         </Grid>
     </Grid>

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище PopupApp_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PopupApp_Counterparty">
+    <Key>
+      <PropertyRef Name="PopupApp_Counterparty_id" />
+    </Key>
+    <Property Name="PopupApp_Counterparty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopupApp_Counterparty_FIO" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Counterparty_Services" Type="nvarchar" MaxLength="50" />
+    <Property Name="PopupApp_Counterparty_Location" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="PopupApp_Own">
     <Key>
       <PropertyRef Name="PopupApp_Own_id" />
@@ -43,18 +52,6 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_PopupApp_Own_PopupApp_Treaty">
-    <End Role="PopupApp_Treaty" Type="Self.PopupApp_Treaty" Multiplicity="0..1" />
-    <End Role="PopupApp_Own" Type="Self.PopupApp_Own" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PopupApp_Treaty">
-        <PropertyRef Name="PopupApp_Treaty_id" />
-      </Principal>
-      <Dependent Role="PopupApp_Own">
-        <PropertyRef Name="PopupApp_Treaty_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -87,13 +84,10 @@
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Хранилище PopupApp_dbModelContainer">
+    <EntitySet Name="PopupApp_Counterparty" EntityType="Self.PopupApp_Counterparty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PopupApp_User" EntityType="Self.PopupApp_User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_PopupApp_Own_PopupApp_Treaty" Association="Self.FK_PopupApp_Own_PopupApp_Treaty">
-      <End Role="PopupApp_Treaty" EntitySet="PopupApp_Treaty" />
-      <End Role="PopupApp_Own" EntitySet="PopupApp_Own" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

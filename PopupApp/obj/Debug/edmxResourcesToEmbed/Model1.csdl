@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PopupApp_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PopupApp_Counterparty">
+    <Key>
+      <PropertyRef Name="PopupApp_Counterparty_id" />
+    </Key>
+    <Property Name="PopupApp_Counterparty_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PopupApp_Counterparty_FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PopupApp_Counterparty_Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PopupApp_Counterparty_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="PopupApp_Own">
     <Key>
       <PropertyRef Name="PopupApp_Own_id" />
     </Key>
     <Property Name="PopupApp_Own_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PopupApp_Treaty_id" Type="Int32" />
-    <NavigationProperty Name="PopupApp_Treaty" Relationship="Self.FK_PopupApp_Own_PopupApp_Treaty" FromRole="PopupApp_Own" ToRole="PopupApp_Treaty" />
   </EntityType>
   <EntityType Name="PopupApp_Treaty">
     <Key>
@@ -25,7 +33,6 @@
     <Property Name="PopupApp_Treaty_File" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="PopupApp_Treaty_Cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PopupApp_Treaty_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="PopupApp_Own" Relationship="Self.FK_PopupApp_Own_PopupApp_Treaty" FromRole="PopupApp_Treaty" ToRole="PopupApp_Own" />
   </EntityType>
   <EntityType Name="PopupApp_User">
     <Key>
@@ -45,27 +52,12 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK_PopupApp_Own_PopupApp_Treaty">
-    <End Role="PopupApp_Treaty" Type="Self.PopupApp_Treaty" Multiplicity="0..1" />
-    <End Role="PopupApp_Own" Type="Self.PopupApp_Own" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PopupApp_Treaty">
-        <PropertyRef Name="PopupApp_Treaty_id" />
-      </Principal>
-      <Dependent Role="PopupApp_Own">
-        <PropertyRef Name="PopupApp_Treaty_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="PopupApp_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PopupApp_Counterparty" EntityType="Self.PopupApp_Counterparty" />
     <EntitySet Name="PopupApp_Own" EntityType="Self.PopupApp_Own" />
     <EntitySet Name="PopupApp_Treaty" EntityType="Self.PopupApp_Treaty" />
     <EntitySet Name="PopupApp_User" EntityType="Self.PopupApp_User" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_PopupApp_Own_PopupApp_Treaty" Association="Self.FK_PopupApp_Own_PopupApp_Treaty">
-      <End Role="PopupApp_Treaty" EntitySet="PopupApp_Treaty" />
-      <End Role="PopupApp_Own" EntitySet="PopupApp_Own" />
-    </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />

@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище PopupApp_dbModelContainer" CdmEntityContainer="PopupApp_dbEntities">
+    <EntitySetMapping Name="PopupApp_Counterparty">
+      <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Counterparty">
+        <MappingFragment StoreEntitySet="PopupApp_Counterparty">
+          <ScalarProperty Name="PopupApp_Counterparty_id" ColumnName="PopupApp_Counterparty_id" />
+          <ScalarProperty Name="PopupApp_Counterparty_FIO" ColumnName="PopupApp_Counterparty_FIO" />
+          <ScalarProperty Name="PopupApp_Counterparty_Services" ColumnName="PopupApp_Counterparty_Services" />
+          <ScalarProperty Name="PopupApp_Counterparty_Location" ColumnName="PopupApp_Counterparty_Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PopupApp_Own">
       <EntityTypeMapping TypeName="PopupApp_dbModel.PopupApp_Own">
         <MappingFragment StoreEntitySet="PopupApp_Own">

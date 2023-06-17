@@ -27,6 +27,7 @@ namespace PopupApp
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<PopupApp_Counterparty> PopupApp_Counterparty { get; set; }
         public virtual DbSet<PopupApp_Own> PopupApp_Own { get; set; }
         public virtual DbSet<PopupApp_Treaty> PopupApp_Treaty { get; set; }
         public virtual DbSet<PopupApp_User> PopupApp_User { get; set; }

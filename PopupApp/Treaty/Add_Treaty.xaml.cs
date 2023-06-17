@@ -28,6 +28,34 @@ namespace PopupApp.Treaty
             InitializeComponent();
             this.dbEntities = dbEntities;
             this.treaty_ = treaty_;
+
+            var entities = from post in dbEntities.PopupApp_Counterparty
+
+                           select post.PopupApp_Counterparty_FIO;
+
+            List<string> postList = entities.ToList();
+
+            // Устанавливаем источник данных для ComboBox
+            Contr.ItemsSource = postList;
+        }
+
+        public void Pop()
+        {
+            string selectedPost = Contr.SelectedItem.ToString();
+
+            // Получаем запись из базы данных, соответствующую выбранному элементу
+            var postToUpdate = dbEntities.PopupApp_Counterparty.FirstOrDefault(b => b.PopupApp_Counterparty_FIO == selectedPost);
+
+            if (postToUpdate != null)
+            {
+                Service.Text = postToUpdate.PopupApp_Counterparty_Services;
+                Location.Text = postToUpdate.PopupApp_Counterparty_Location;
+            }
+        }
+
+        private void Contr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Pop();
         }
 
         private void New_Traty_Click(object sender, RoutedEventArgs e)
@@ -63,5 +91,7 @@ namespace PopupApp.Treaty
         {
             this.Close();
         }
+
+        
     }
 }

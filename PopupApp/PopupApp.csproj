@@ -114,6 +114,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PopupApp_Counterparty.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="PopupApp_Own.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -135,8 +138,17 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Treaty\Add_Contr.xaml.cs">
+      <DependentUpon>Add_Contr.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Treaty\Add_Treaty.xaml.cs">
       <DependentUpon>Add_Treaty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Treaty\Contr_UC.xaml.cs">
+      <DependentUpon>Contr_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Treaty\Edit_Contr.xaml.cs">
+      <DependentUpon>Edit_Contr.xaml</DependentUpon>
     </Compile>
     <Compile Include="Treaty\Edit_Treaty.xaml.cs">
       <DependentUpon>Edit_Treaty.xaml</DependentUpon>
@@ -168,7 +180,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Treaty\Add_Contr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Treaty\Add_Treaty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Treaty\Contr_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Treaty\Edit_Contr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

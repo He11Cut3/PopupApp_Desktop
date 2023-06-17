@@ -141,3 +141,9 @@ C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_D
 C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\PopupApp.pdb
 C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\A_tion.g.cs
 C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\A_tion.baml
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Add_Contr.g.cs
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Contr_UC.g.cs
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Edit_Contr.g.cs
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Add_Contr.baml
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Contr_UC.baml
+C:\Users\Руслан-ПК\Desktop\Проекты для Git\PopupApp\PopupApp_Desktop\PopupApp\obj\Debug\Treaty\Edit_Contr.baml

@@ -32,11 +32,11 @@
                             HorizontalAlignment="Left"
                             Margin="10,16,0,17"
                             Click="New_Treaty_Click" />
-                    
+
                     <TextBlock Margin="10,20,0,0"
                                FontSize="20"
-                             Text="Поиск"
-                             Style="{StaticResource textuser}" />
+                               Text="Поиск"
+                               Style="{StaticResource textuser}" />
                     <TextBox Width="139"
                              x:Name="Find_Inf"
                              Height="28"
@@ -48,12 +48,11 @@
                              FontSize="16"
                              TextChanged="Find_Inf_TextChanged" />
                 </StackPanel>
-                
-                <ListView x:Name="listView"
+
+                <ListView x:Name="listView_input"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           Grid.Row="1"
-                          Grid.Column="1"
-                          Margin="10,10,10,10">
+                          Margin="10,10,676,10">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"
@@ -67,8 +66,7 @@
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0"
                                                          EndPoint="1,0.7">
-                                        <GradientStop 
-                                                      Offset="0" />
+                                        <GradientStop Offset="0" />
                                     </LinearGradientBrush>
                                 </Border.Background>
 
@@ -93,22 +91,22 @@
                                                    Grid.Column="0">
                                             <TextBlock Text="{Binding PopupApp_Treaty_Name,
                                                        StringFormat='Наименование: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Number_Treaty,
                                                        StringFormat='Номер договора: {0}'}"
                                                        Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Location,
                                                        StringFormat='Город: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Start_Date,
                                                        StringFormat='Дата начала договора: {0}'}"
                                                        Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_End_Date,
                                                        StringFormat='Дата окончания договора: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Coming,
                                                        StringFormat='Договор: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Services,
                                                        StringFormat='Услуга: {0}'}"
                                                        Style="{StaticResource textuser}" />
@@ -117,10 +115,10 @@
                                                        Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Cost,
                                                        StringFormat='Стоимость: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <TextBlock Text="{Binding PopupApp_Treaty_Status,
                                                        StringFormat='Статус: {0}'}"
-                                                       Style="{StaticResource textuser}"/>
+                                                       Style="{StaticResource textuser}" />
                                             <StackPanel Orientation="Horizontal">
                                                 <Button x:Name="Edit_Treaty"
                                                         Grid.Row="0"
@@ -141,9 +139,108 @@
                                                         Margin="10,5,0,17"
                                                         Click="Dow_Click" />
                                             </StackPanel>
-                                            
+
                                         </WrapPanel>
-                                        
+
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="listView_OutPut"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          Grid.Row="1"
+                          Margin="583,10,10,10">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"
+                                       HorizontalAlignment="Left" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2"
+                                    Opacity="0.95">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0"
+                                                         EndPoint="1,0.7">
+                                        <GradientStop Offset="0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush StartPoint="0,0"
+                                                         EndPoint="1,1">
+                                        <GradientStop Color="#0b1b25"
+                                                      Offset="0" />
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+                                <Grid Width="900">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="5*" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel>
+                                        <WrapPanel Orientation="Vertical"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Grid.Column="0">
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Name,
+                                                       StringFormat='Наименование: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Number_Treaty,
+                                                       StringFormat='Номер договора: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Location,
+                                                       StringFormat='Город: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Start_Date,
+                                                       StringFormat='Дата начала договора: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_End_Date,
+                                                       StringFormat='Дата окончания договора: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Coming,
+                                                       StringFormat='Договор: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Services,
+                                                       StringFormat='Услуга: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Counterparty,
+                                                       StringFormat='Контр-агент: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Cost,
+                                                       StringFormat='Стоимость: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <TextBlock Text="{Binding PopupApp_Treaty_Status,
+                                                       StringFormat='Статус: {0}'}"
+                                                       Style="{StaticResource textuser}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="Edit_Treaty"
+                                                        Grid.Row="0"
+                                                        Content="Изменить"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="10,5,0,17"
+                                                        Click="Edit_Treaty_Click" />
+                                                <Button x:Name="Del"
+                                                        Grid.Row="0"
+                                                        Content="Удалить"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="10,5,0,17"
+                                                        Click="Del_Click" />
+                                                <Button x:Name="Dow"
+                                                        Grid.Row="0"
+                                                        Content="Скачать"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="10,5,0,17"
+                                                        Click="Dow_Click" />
+                                            </StackPanel>
+
+                                        </WrapPanel>
+
                                     </StackPanel>
                                 </Grid>
                             </Border>
